@@ -22,18 +22,3 @@ class IdeaStore
     @all = []
   end
 end
-
-# class IdeaStore
-#   def self.save(idea)
-#     @all ||= []
-#     @all << idea
-#   end
-
-#   def self.find(id)
-#     @all.first
-#   end
-
-#   def self.count
-#     @all.length
-#   end
-# end

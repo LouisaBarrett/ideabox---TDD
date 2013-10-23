@@ -34,5 +34,5 @@ class IdeaStoreTest < Minitest::Test
   def teardown
     IdeaStore.delete_all
   end
-  
+
 end
