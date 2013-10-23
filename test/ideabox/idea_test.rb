@@ -1,9 +1,10 @@
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
+require './test/test_helper'
 require './lib/ideabox/idea'
 
-class IdeaTest < Minitest::Test
+class IdeaTest < MiniTest::Unit::TestCase
   def test_basic_idea
     idea = Idea.new("title", "description")
     assert_equal "title", idea.title
@@ -29,15 +30,12 @@ class IdeaTest < Minitest::Test
   def test_ideas_can_be_sorted_by_rank
     diet = Idea.new("diet", "cabbage soup")
     exercise = Idea.new("exercise", "long distance running")
-    drink = Idea.new("drink", "carrot smoothy")
-
+    diet.like!
     exercise.like!
-    exercise.like!
-    drink.like!
 
-    ideas = [diet, exercise, drink]
+    ideas = [diet, exercise]
 
-    assert_equal [diet, drink, exercise], ideas.sort
+    assert_equal [exercise, diet], ideas.sort
   end
 
 end

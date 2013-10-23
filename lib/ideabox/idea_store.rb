@@ -1,24 +1,35 @@
 class IdeaStore
-  def self.save(idea)
+
+  attr_accessor :titles
+
+    def self.save(idea)
+    idea.id ||= next_id
+    all[idea.id] = idea
+    idea.id
+  end
+
+  def self.all
     @all ||= []
-    id = next_id
-    @all[id] = idea
-    id
   end
 
   def self.find(id)
-    @all[id]
-  end
-
-  def self.next_id
-    @all.size
+    all[id]
   end
 
   def self.count
-    @all.length
+    all.length
+  end
+
+  def self.next_id
+    all.size
+  end
+
+  def self.delete(id)
+    all.delete_at(id)
   end
 
   def self.delete_all
     @all = []
   end
+
 end

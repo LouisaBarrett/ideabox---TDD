@@ -2,7 +2,8 @@ class Idea
 
   include Comparable
 
-  attr_reader :title, :description, :rank
+  attr_accessor :title, :id, :description
+  attr_reader :rank
 
   def initialize(title, description)
     @title = title
