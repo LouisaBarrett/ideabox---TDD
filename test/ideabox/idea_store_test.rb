@@ -5,7 +5,7 @@ require './test/test_helper'
 require './lib/ideabox/idea'
 require './lib/ideabox/idea_store'
 
-class IdeaStoreTest < MiniTest::Unit::TestCase
+class IdeaStoreTest < Minitest::Test
 
   def teardown
     IdeaStore.delete_all
@@ -35,6 +35,16 @@ class IdeaStoreTest < MiniTest::Unit::TestCase
     idea = IdeaStore.find(id2)
     assert_equal "inspiration", idea.title
     assert_equal "looking at the stars", idea.description
+  end
+
+  def test_find_by_title
+    IdeaStore.save Idea.new("dance", "like it's the 80s")
+    IdeaStore.save Idea.new("sleep", "like a baby")
+    IdeaStore.save Idea.new("dream", "like anything is possible")
+
+    idea = IdeaStore.find_by_title("sleep")
+
+    assert_equal "like a baby", idea.description
   end
 
   def test_update_idea

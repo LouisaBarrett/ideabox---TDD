@@ -16,6 +16,12 @@ class IdeaStore
     all[id]
   end
 
+  def self.find_by_title(text)
+    all.find do |idea|
+      idea.title == text
+    end
+  end
+
   def self.count
     all.length
   end
